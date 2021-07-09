@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<h2 class="text-center mb-5">Votre compte</h2>
+<div class="container-fluid row">
+    <div class="card m-auto col-4">
+        <div class="card-header">
+            {{account.accountName}}
+        </div>
+        <div class="card-body">
+            <p class="card-text">N° de compte : {{'FR' ~ account.accountNumber}}</p>
+            <hr>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Date d'ouverture : {{account.openDate | date('d/m/Y')}}</li>
+                <li class="list-group-item">Solde du compte : {{account.accountAmount}}</li>
+            </ul>
+            <hr>
+            <h5 class="text-center">Dernières opérations</h5>
+            <ul class="list-group list-group-flush">
+                <a href="{{ path('lastOperation', {accountId:account.id}) }}" class="card-link btn btn-dark mt-0">Voir opérations</a>
+            </ul>
+            <hr>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{{ path('creditOperation', {accountId:account.id}) }}" class="card-link btn btn-dark mt-0">Crédit</a>
+            <a href="{{ path('debitOperation', {accountId:account.id}) }}" class="card-link btn btn-dark mt-0">Débit</a>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
